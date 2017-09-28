@@ -30,7 +30,7 @@
 
 <script>
 
-var apiURL = 'http://localhost:7071/api/list'
+var apiURL = 'https://localhost:7071/api/list'
 
 export default {
   name: 'List',
