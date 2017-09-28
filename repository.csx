@@ -34,6 +34,9 @@ public class Repository<T> : IRepository<T>
 
     public Repository(TraceWriter _log, string _collectionName = null)
     {
+        _log.Info("trying to read app settings");
+        _log.Info(ConfigurationManager.AppSettings["DocDB_collectionId"]);
+        
         this.collectionName =_collectionName ?? ConfigurationManager.AppSettings["DocDB_collectionId"];
         this.log = _log;
     }
