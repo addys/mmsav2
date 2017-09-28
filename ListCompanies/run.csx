@@ -2,7 +2,6 @@
 #r "Newtonsoft.Json"
 #r "Microsoft.Azure.Documents.Client"
 #r "System.Configuration"
-#r "System.Net.Http.Formatting"
 
 #load "..\Model.csx"
 #load "..\Assessment.csx"
@@ -13,7 +12,6 @@ using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Azure.Documents.Client;
-using System.Net.Http.Formatting;
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceWriter log)
 {
@@ -26,36 +24,14 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     var length =results.Length;
 
-    var resp =  req.CreateResponse(HttpStatusCode.OK, results, new JsonMediaTypeFormatter());
-    return resp;
-
-
-/* 
-    using (DocumentClient client = new DocumentClient(endpoint, authKey))
+    var json = JsonConvert.SerializeObject(results, Formatting.Indented);
+    return new HttpResponseMessage(HttpStatusCode.OK) 
     {
-         // Set some common query options
-        FeedOptions queryOptions = new FeedOptions { MaxItemCount = -1 };
- 
-        IQueryable<Model> modelQuery = client.CreateDocumentQuery<Model>(
-                UriFactory.CreateDocumentCollectionUri(databaseName, collectionName), queryOptions)
-                .Where(f => f.id.Contains("model"))
-                .OrderByDescending(f=> f.version);
-
-        var results = modelQuery.ToArray();
-        var length =results.Length;
-        var model = results[0];
-
-        return req.CreateResponse(HttpStatusCode.OK, JsonConvert.SerializeObject(model));
-    }
-*/
-/* 
-    if (id == null)
-        return req.CreateResponse(HttpStatusCode.OK, $"All {company} items were requested.");
-    else
-        return req.CreateResponse(HttpStatusCode.OK, $"{company} item with id = {id} has been requested.");
-*/
+        Content = new StringContent(json, Encoding.UTF8, "application/json")
+    };
 }
 
+/*
 public static async Task<HttpResponseMessage> ListCompanies(HttpRequestMessage req, string company, int? id, TraceWriter log)
 {
     var repo = new Repository<string>(log);
@@ -71,3 +47,4 @@ public static async Task<HttpResponseMessage> ListCompanies(HttpRequestMessage r
     var resp =  req.CreateResponse(HttpStatusCode.OK, length, new JsonMediaTypeFormatter());
     return resp;
 }
+ */
