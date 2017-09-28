@@ -2,7 +2,6 @@
 #r "Newtonsoft.Json"
 #r "Microsoft.Azure.Documents.Client"
 #r "System.Configuration"
-#r "System.Net.Http.Formatting"
 
 #load "..\Model.csx"
 #load "..\Assessment.csx"
@@ -12,8 +11,7 @@ using System.Configuration;
 using System.Net;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using Microsoft.Azure.Documents.Client;
-using System.Net.Http.Formatting; 
+using Microsoft.Azure.Documents.Client; 
 
 public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string company, TraceWriter log)
 {
@@ -63,6 +61,10 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, string
         
     }
 
-    var resp =  req.CreateResponse(HttpStatusCode.OK, result, new JsonMediaTypeFormatter());
-    return resp;
+    var json = JsonConvert.SerializeObject(result, Formatting.Indented);
+    return new HttpResponseMessage(HttpStatusCode.OK) 
+    {
+        Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json")
+    };
+
 }
