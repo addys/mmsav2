@@ -48,7 +48,7 @@
 
 // import vueSlider from 'vue-slider-component'
 
-var apiURL = 'https://localhost:7071/api/c/'
+var apiURL = '../api/c/'
 
 export default {
   name: 'Assessment',
