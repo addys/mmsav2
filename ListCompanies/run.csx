@@ -18,16 +18,19 @@ public static async Task<HttpResponseMessage> Run(HttpRequestMessage req, TraceW
 
     var repo = new Repository<object>(log, Repository<string>.AssessmentCollection);
 
-    IQueryable<object> modelQuery = repo.CreateQuery("select c.id, c.company, c.timestamp from c", new FeedOptions { MaxItemCount = 200 });
+    IQueryable<object> modelQuery = repo.CreateQuery("SELECT c.id, c.company, c.timestamp FROM c", new FeedOptions { MaxItemCount = 200 });
 
-    var results = (await repo.QueryAsync(modelQuery)).ToArray(); 
+    var results = (await repo.QueryAsync(modelQuery)).ToArray();
 
-    var length =results.Length;
+    var sortedResults =   (from o in results let t = (dynamic)o orderby t.company select o).ToArray();
 
-    var json = JsonConvert.SerializeObject(results, Formatting.Indented);
+    var length =sortedResults.Length;
+    log.Info(length.ToString());
+
+    var json = JsonConvert.SerializeObject(sortedResults, Formatting.Indented);
     return new HttpResponseMessage(HttpStatusCode.OK) 
     {
-        Content = new StringContent(json, Encoding.UTF8, "application/json")
+        Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json")
     };
 }
 
