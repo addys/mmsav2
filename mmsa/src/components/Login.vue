@@ -16,10 +16,10 @@
 export default {
   name: 'login',
   created () {
-    console.log('query = ' + JSON.stringify(this.$route.query))
-    console.log('path = ' + JSON.stringify(this.$route.path))
-    console.log('params = ' + JSON.stringify(this.$route.params))
-    console.log('route = ' + JSON.stringify(this.$route))
+  //  console.log('query = ' + JSON.stringify(this.$route.query))
+  //  console.log('path = ' + JSON.stringify(this.$route.path))
+  //  console.log('params = ' + JSON.stringify(this.$route.params))
+  //  console.log('route = ' + JSON.stringify(this.$route))
   }
 }
 

@@ -8,7 +8,7 @@
             <table width="100%"><tr><td width="10%"></td>
             <td class="box" width="80%">
 
-            <div class="sectiontitle">{{ section.title }}</div>
+            <div class="sectiontitle">{{company}}: The {{ section.title }}</div>
 
             <div v-for="question in section.questions">
                 <div class="question">{{question.id}} {{ question.title }} :  {{ question.subtitle }}</div>
