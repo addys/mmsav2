@@ -14,7 +14,10 @@
 <script>
 
 export default {
-  name: 'login'
+  name: 'login',
+  created () {
+    console.log(this.$route.query.token)
+  }
 }
 
 </script>
