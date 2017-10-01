@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <table>
-      <tr>
+      <tr width="100%">
         <td><img src="/app/static/logo.png" width="33%"></td>
+        <td align="right">Hello {{username()}}</td>
       </tr>
 
     </table>
@@ -14,6 +15,10 @@
 <script>
 
 export default {
-  name: 'app'
+  name: 'app',
+  username() {
+    var name = localStorage.getItem('username')
+    return (name) ? name : '?';
+  }
 }
 </script>

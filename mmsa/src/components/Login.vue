@@ -2,10 +2,10 @@
   <div class="login">
 
     <a href="http://mmsa-v2.azurewebsites.net/.auth/login/facebook?post_login_redirect_uri=/app">FB</a>
-    <Br>
+    <br/>
     <a href="http://mmsa-v2.azurewebsites.net/.auth/login/google?post_login_redirect_uri=/app">GOOG</a>
-    <Br>
-    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/microsoftaccount?post_login_redirect_uri=/app">MSFT</a>
+    <br/>
+    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/microsoftaccount/callback?post_login_redirect_uri=/app">MSFT</a>
 
 
   </div>
@@ -14,7 +14,7 @@
 <script>
 
 export default {
-  name:"login"
+  name: 'login'
 }
 
 </script>

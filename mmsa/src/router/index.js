@@ -24,6 +24,10 @@ export default new Router({
       name: 'Login',
       component: Login
     }
-
   ]
 })
+
+router.redirect({
+  '*': '/'
+})
+
