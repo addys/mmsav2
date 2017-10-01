@@ -20,10 +20,16 @@ export default new Router({
       component: List
     },
     {
+      path: '/login/:token',
+      name: 'Login',
+      component: Login,
+      props: true
+    },
+    {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      props: false
     }
-
   ]
 })
