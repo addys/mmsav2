@@ -3,9 +3,9 @@
     "proxies": {
         "root": {
             "matchCondition": {
-                "route": "/"
+                "route": "/{*restOfPath}"
             },
-            "backendUri": "https://%WEBSITE_HOSTNAME%/app/"
+            "backendUri": "https://mmsav2ad19.blob.core.windows.net/app/{restOfPath}"
         }
     }
 }
