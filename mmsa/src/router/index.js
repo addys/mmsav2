@@ -10,29 +10,24 @@ export default new Router({
   mode: 'history',
   routes: [
     {
-      path: '/',
+      path: '/app/',
       name: 'Login',
       component: Login
     },
     {
-      path: '',
-      name: 'Login',
-      component: Login
-    },
-    {
-      path: '/Assessment/:company',
+      path: '/app/Assessment/:company',
       name: 'Assessment',
       component: Assessment,
       props: true
     },
     {
-      path: '/list',
+      path: '/app/list',
       name: 'List',
       component: List
     },
     {
       path: '*',
-      redirect: '/'
+      redirect: '/app/'
     }
 /*
     ,
