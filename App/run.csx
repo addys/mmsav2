@@ -7,19 +7,28 @@ public static HttpResponseMessage Run(HttpRequestMessage req,TraceWriter log, Ex
 {
     var response = new HttpResponseMessage(HttpStatusCode.OK);
 
-    var localDir = context.FunctionDirectory;    
-
     var path = req.RequestUri.PathAndQuery.ToLower();
-    
+    var localDir = context.FunctionDirectory; 
+
+    path = FixPath(localDir, path);
+
+    if (!File.Exists(path))
+    {
+        path = FixPath(localDir, "/app");
+    }
+
+    var stream = new FileStream(path, FileMode.Open);
+    response.Content = new StreamContent(stream);
+    response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html"); 
+    return response;
+}
+
+public static string FixPath(string localDir, string path)
+{
     if (path == "/app" || path == "/app/")
     {
         path = "/app/index.html";
     }
-
-    path = path.Replace("/app/", localDir + "/dist/");
-
-    var stream = new FileStream(path ?? "index.html", FileMode.Open);
-    response.Content = new StreamContent(stream);
-    response.Content.Headers.ContentType = new MediaTypeHeaderValue("text/html"); 
-    return response;
+     
+    return path.Replace("/app/", localDir + "/dist/") ?? "index.html";
 }

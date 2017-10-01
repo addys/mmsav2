@@ -1,11 +1,11 @@
 <template>
   <div class="login">
 
-    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/facebook?post_login_redirect_uri=/app%23/login/">FB</a>
+    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/facebook?post_login_redirect_uri=/app/login/">FB</a>
     <br/>
-    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/google?post_login_redirect_uri=/app%23/login/">GOOG</a>
+    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/google?post_login_redirect_uri=/app/login/">GOOG</a>
     <br/>
-    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/microsoftaccount/callback?post_login_redirect_uri=/app%23/login/">MSFT</a>
+    <a href="http://mmsa-v2.azurewebsites.net/.auth/login/microsoftaccount/callback?post_login_redirect_uri=/app/login/">MSFT</a>
 
 
   </div>

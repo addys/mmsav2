@@ -7,7 +7,18 @@ import Login from '@/components/Login'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
+    {
+      path: '/',
+      name: 'Login',
+      component: Login
+    },
+    {
+      path: '',
+      name: 'Login',
+      component: Login
+    },
     {
       path: '/Assessment/:company',
       name: 'Assessment',
@@ -15,10 +26,16 @@ export default new Router({
       props: true
     },
     {
-      path: '/',
+      path: '/list',
       name: 'List',
       component: List
     },
+    {
+      path: '*',
+      redirect: '/'
+    },
+/*
+    ,
     {
       path: '/login/:token',
       name: 'Login',
@@ -30,6 +47,6 @@ export default new Router({
       name: 'Login',
       component: Login,
       props: false
-    }
+    } */
   ]
 })

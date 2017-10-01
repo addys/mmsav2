@@ -6,7 +6,7 @@
         <td align="right" width="200">
           Hello {{username()}}
           <br/>
-          <a href="/.auth/logout?post_logout_redirect_uri=/app#/login">Sign Out</a>
+          <a href="/.auth/logout?post_logout_redirect_uri=/app/login">Sign Out</a>
         </td>
       </tr>
 
