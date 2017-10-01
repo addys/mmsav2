@@ -16,9 +16,11 @@
 
 export default {
   name: 'app',
-  username() {
-    var name = localStorage.getItem('username')
-    return (name) ? name : '?';
+  methods: {
+    username() {
+      var name = localStorage.getItem('username')
+      return (name) ? name : '?';
+    }
   }
 }
 </script>
