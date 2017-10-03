@@ -15,11 +15,17 @@
           </thead>
           <tbody>
             <tr v-for="d in docs">
-              <td class="text"> <router-link :to="{ name: 'Assessment', params: { company: d.company }}">{{ d.company }}</router-link></td>
+              <td class="text"> <router-link :to="{ name: 'Assessment', params: { company: d.company }}">{{ d.company }} <b-badge v-if="new Date(d.timestamp) >= new Date(Date.now() -14 * 24*60*60*1000)" pill variant="success">New</b-badge></router-link></td>
               <td class="text">{{ d.timestamp | moment("DD-MM-YYYY") }}</td>
             </tr>
           </tbody>
         </table>
+
+        <b-table striped hover :items="docs"  :fields="[ { key: 'company', sortable: true },{ key: 'timestamp', sortable: true }]">
+            <template slot="timestamp" scope="data">
+              {{ data.timestamp | moment("DD-MM-YYYY") }}
+            </template>
+        </b-table>
 
           <button v-on:click="sendToServer">Create New</button>
 
